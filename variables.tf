@@ -24,16 +24,10 @@ variable "app_name" {
   default     = "parks_reso-admin"
 }
 
-variable "domain_name" {
-  description = "Domain name for CloudFront distribution"
-  type        = string
-  default     = "dev.parks-reso-admin.com"
-}
-
 variable "s3_bucket" {
   description = "S3 Bucket containing static web files for CloudFront distribution"
   type        = string
-  default     = "parks_reso_admin
+  default     = "parks-reso-admin"
 }
 
 variable "s3_bucket_name" {
@@ -42,10 +36,10 @@ variable "s3_bucket_name" {
   default     = "BC Parks Day Pass Admin"
 }
 
-variable "s3_origin" {
+variable "s3_origin_id" {
   description = "S3 Origin Id"
   type        = string
-  default     = parks-admin-s3-origin
+  default     = "parks-admin-s3-origin"
 }
 
 variable "budget_amount" {
@@ -65,14 +59,14 @@ variable "common_tags" {
   }
 }
 
-variable "service_names" {
-  description = "List of service names to use as subdomains"
-  default     = ["parks-reso-admin"]
-  type        = list(string)
+variable "app_version" {
+  description = "app version to deploy"
+  type        = string
 }
 
-variable "log_bucket" {
-  description = "S3 bucket to store logs"
+
+variable "domain_name" {
+  description = "Domain name for CloudFront distribution"
   type        = string
-  default     = "mylogs.s3.amazonaws.com"
+  default     = ""
 }

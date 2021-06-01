@@ -1,7 +1,7 @@
 
 resource "aws_budgets_budget" "cost" {
 
-  name              = "startup-sample-monthly"
+  name              = "parks-reso-admin-monthly"
   budget_type       = "COST"
   limit_amount      = var.budget_amount
   limit_unit        = "USD"
@@ -17,11 +17,11 @@ resource "aws_budgets_budget" "cost" {
   }
 
   cost_filters = {
-    TagKeyValue = "user:Project$BC Parks Day Pass System"
+    TagKeyValue = "user:Project$BC Parks Day Pass System Admin"
   }
 }
 
 
 resource "aws_sns_topic" "billing_alert_topic" {
-  name = "startup-sample-billing-alert-topic"
+  name = "parks-reso-admin-billing-alert-topic"
 }
