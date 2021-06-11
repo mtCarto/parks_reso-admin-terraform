@@ -24,12 +24,6 @@ variable "app_name" {
   default     = "parks_reso-admin"
 }
 
-variable "s3_bucket" {
-  description = "S3 Bucket containing static web files for CloudFront distribution"
-  type        = string
-  default     = "parks-reso-admin"
-}
-
 variable "s3_bucket_name" {
   description = "Human readable S3 bucket name for labels"
   type        = string
@@ -64,9 +58,11 @@ variable "app_version" {
   type        = string
 }
 
-
+variable "s3_bucket" {
+  description = "S3 Bucket containing static web files for CloudFront distribution"
+  type        = string
+}
 variable "domain_name" {
   description = "Domain name for CloudFront distribution"
   type        = string
-  default     = ""
 }

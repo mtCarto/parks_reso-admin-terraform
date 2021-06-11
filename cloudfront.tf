@@ -1,6 +1,6 @@
 #bucket containing the static files to serve out
 resource "aws_s3_bucket" "bcgov-parks-reso-admin" {
-  bucket = var.s3_bucket
+  bucket = "${var.s3_bucket}-${var.target_env}"
   acl    = "private"
 
   tags   = {
@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "bcgov-parks-reso-admin" {
 
 #bucket to hold cloudfront logs
 resource "aws_s3_bucket" "parks-reso-admin-logs" {
-  bucket = "parks-reso-admin-logs"
+  bucket = "${var.s3_bucket}-logs-${var.target_env}"
   acl    = "private"
 
   tags   = {
@@ -45,7 +45,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     prefix          = "logs"
   }
 
-  aliases = [ var.domain_name ]
+  # uncomment when we have a domain name to use
+  # aliases = [ var.domain_name ]
 
   custom_error_response {
     error_code    = 404

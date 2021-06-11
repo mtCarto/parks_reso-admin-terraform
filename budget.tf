@@ -1,7 +1,7 @@
 
 resource "aws_budgets_budget" "cost" {
 
-  name              = "parks-reso-admin-monthly"
+  name              = "parks-reso-admin-${var.target_env}-monthly"
   budget_type       = "COST"
   limit_amount      = var.budget_amount
   limit_unit        = "USD"
