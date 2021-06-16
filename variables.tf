@@ -65,4 +65,5 @@ variable "s3_bucket" {
 variable "domain_name" {
   description = "Domain name for CloudFront distribution"
   type        = string
+  default     = "example.domain.foo"
 }
