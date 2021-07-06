@@ -31,6 +31,14 @@ resource "aws_cloudfront_function" "api-url" {
   code    = file("${path.module}/set-api-url.js")
 }
 
+resource "aws_cloudfront_function" "api-url-request" {
+  name    = "api-url-request"
+  runtime = "cloudfront-js-1.0"
+  comment = "Function to set api url in viewer header"
+  publish = true
+  code    = file("${path.module}/set-api-url-request.js")
+}
+
 #setup a cloudfront distribution to serve out the frontend files from s3 (github actions will push builds there)
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
@@ -74,7 +82,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     target_origin_id = var.s3_origin_id
 
     function_association {
-      event_type   = "viewer-request"
+      event_type   = "viewer-response"
       function_arn = aws_cloudfront_function.api-url.arn
     }
 
@@ -100,7 +108,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     target_origin_id = var.s3_origin_id
 
     function_association {
-      event_type   = "viewer-request"
+      event_type   = "viewer-response"
       function_arn = aws_cloudfront_function.api-url.arn
     }
 

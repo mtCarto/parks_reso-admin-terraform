@@ -1,10 +1,9 @@
 function handler(event) {
-  var request = event.request;
-  var headers = request.headers;
+  var response = event.response;
+  var headers = response.headers;
 
-  // Set the cache-control header
-  headers['api-url'] = {value: 'https://pkqlwkdzka.execute-api.ca-central-1.amazonaws.com/dev'};
-
-  // Return response to viewers
-  return request;
+  // todo have github actions use sed to set endpoint from env var
+  headers['api-url'] = {value: 'api-endpoint-placeholder'};
+  // response.headers = headers;
+  return response;
 }
